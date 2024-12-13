@@ -3,11 +3,22 @@
   "name": "DPB",
   "description": "Download Papers in Background",
   "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "downloads",
+    "scripting"
+  ],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_icon": "images/icon.png"
   },
-  "permissions": [
-    "activeTab"
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
   ]
 }

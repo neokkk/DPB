@@ -1,8 +1,7 @@
 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const currentTab = tabs[0];
-    console.log(currentTab);
-    const isPDF = currentTab.url.endsWith(".pdf");  // URL이 ".pdf"로 끝나는지 확인합니다.
-    console.log(isPDF);
+    const { url } = currentTab;
+    const isPDF = url.endsWith(".pdf");
 
     const subtitle = document.getElementById("subtitle");
 
@@ -11,4 +10,8 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     } else {
         subtitle.textContent = "This is not a PDF file";
     }
+});
+
+chrome.scripting.getRegisteredContentScripts(null, (scripts) => {
+    console.log(scripts);
 });
